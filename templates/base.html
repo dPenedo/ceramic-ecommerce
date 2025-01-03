@@ -1,0 +1,15 @@
+{% load static tailwind_tags %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% tailwind_css %}
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %} - Tienda de cerámica </title>
+</head>
+<body class="bg-white">
+<h3 class="bg-green-500">Navbar</h3>
+{% block content %}{% endblock %}
+
+</body>
+</html>
