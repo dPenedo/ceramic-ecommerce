@@ -1,13 +1,17 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Prueba</title>
-    <link href="css/style.css" rel="stylesheet">
-  </head>
-  <body>
-    <h1>Prueba</h1>
+{% extends "base.html" %}
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+  <ul>
+      {% for product in products %}
+          <li class="border-black rounded shadow-lg my-2 p-2">
+              <h4><b>{{ product.title }}</b></h4>
+              <p>Precio: <b>{{ product.price }}</b>$</p>
+              <p>Tipo de producto: <b>{{ product.type }}</b></p>
+              <p>Hecho por <b>{{ product.complete_name }}</b></p>
+          </li>
+
+      {% endfor %}
+  </ul>
+{% endblock %}
   
-  </body>
-</html>
