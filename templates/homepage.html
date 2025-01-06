@@ -2,16 +2,15 @@
 {% block title %}Inicio{% endblock %}
 
 {% block content %}
-  <ul>
-      {% for product in products %}
-          <li class="border-black rounded shadow-lg my-2 p-2">
-              <h4><b>{{ product.title }}</b></h4>
-              <p>Precio: <b>{{ product.price }}</b>$</p>
-              <p>Tipo de producto: <b>{{ product.type }}</b></p>
-              <p>Hecho por <b>{{ product.complete_name }}</b></p>
-          </li>
-
-      {% endfor %}
-  </ul>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for product in products %}
+      <div class="bg-white border border-gray-200 rounded-lg shadow-lg p-4">
+<img src="{{ product.photo.url }}" alt="{{ product.title }}" class="w-full h-48 object-cover rounded-t-lg mb-4">
+        <h4 class="text-xl font-bold mb-2">{{ product.title }}</h4>
+        <p class="text-gray-600">Precio: <b>{{ product.price }}</b> $</p>
+        <p class="text-gray-600">Tipo de producto: <b>{{ product.type }}</b></p>
+        <p class="text-gray-600">Hecho por <b>{{ product.complete_name }}</b></p>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock %}
-  

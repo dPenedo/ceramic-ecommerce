@@ -20,6 +20,7 @@ class Product(models.Model):
     price = models.FloatField()
     type = models.ForeignKey(TypeOfProduct, on_delete=models.CASCADE)
     author = models.CharField(max_length=3, choices=AUTHORS)
+    photo = models.ImageField(upload_to="piezas", blank=True)
 
     def __str__(self):
         return f"{self.title} - {self.type} de {self.author}"
