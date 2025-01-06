@@ -15,10 +15,7 @@ class TypeOfProduct(models.Model):
 
 
 class Product(models.Model):
-    AUTHORS = {
-        "AGV": "Ariadna Gorostegui Valenti",
-        "VC": "Veronica Cepeda"
-    }
+    AUTHORS = {"AGV": "Ariadna Gorostegui Valenti", "VC": "Veronica Cepeda"}
     title = models.CharField(max_length=100)
     price = models.FloatField()
     type = models.ForeignKey(TypeOfProduct, on_delete=models.CASCADE)

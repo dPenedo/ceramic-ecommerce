@@ -6,9 +6,14 @@
     {% tailwind_css %}
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %} - Tienda de cerámica </title>
+{% load static %}
+<script src="{% static 'js/navbar.js' %}"></script>
+
 </head>
 <body class="bg-white">
-<h3 class="bg-green-500">Navbar</h3>
+    {% block navbar %}
+    {% include 'partials/navbar.html' %}
+    {% endblock %}
 {% block content %}{% endblock %}
 
 </body>

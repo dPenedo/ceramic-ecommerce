@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     "products",
     "tailwind",
     "theme",
-    'django_browser_reload'
+    "django_browser_reload",
 ]
 
 MIDDLEWARE = [
@@ -122,11 +122,15 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-TAILWIND_APP_NAME = 'theme'
+TAILWIND_APP_NAME = "theme"
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
