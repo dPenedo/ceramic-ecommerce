@@ -1,0 +1,30 @@
+:root {
+  --color-subrayado: #A16207;
+}
+
+.subrayado {
+  position: relative;
+}
+
+.subrayado::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  border-radius: 4px;
+  background-color: var(--color-subrayado);
+  bottom: 0;
+  left: 0;
+  transform-origin: right;
+  transform: scalex(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.subrayado:hover::before {
+  transform-origin: left;
+  transform: scalex(1);
+}
+
+.subrayado:active {
+  transform: scale(0.96);
+}
