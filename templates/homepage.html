@@ -4,8 +4,8 @@
 {% block content %}
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     {% for pieza in piezas %}
-      <a href="#" class=" bg-white border border-gray-200 rounded-lg shadow-lg p-4">
-    <div class="overflow-hiden">
+  <a href="{{pieza.id}}" class=" bg-white border border-gray-200 rounded-lg shadow-lg p-4">
+    <div class="block w-full overflow-hidden">
     <img src="{{ pieza.imagen.url }}" alt="{{ pieza.titulo }}" class=" w-full h-48 rounded-lg object-cover transition duration-300 hover:scale-[1.04]   rounded-t-lg mb-4">
     </div>
         <h4 class="text-xl font-bold mb-2">{{ pieza.titulo }}</h4>
@@ -16,3 +16,18 @@
     {% endfor %}
   </div>
 {% endblock %}
+
+
+
+	<!-- <div class="flex flex-col"> -->
+	<!-- 	<a -->
+	<!-- 		class="md:min-w-32 mb-2 me-2 block w-full min-w-full overflow-hidden md:w-40" -->
+	<!-- 		href="https://escuela-de-columna.vercel.app" -->
+	<!-- 	> -->
+	<!-- 		<Image -->
+	<!-- 			src={img} -->
+	<!--        alt={title} -->
+	<!-- 			class="w-full rounded-lg object-contain transition duration-300 hover:scale-[1.04]" -->
+	<!-- 		/> -->
+	<!-- 	</a> -->
+	<!-- </div> -->

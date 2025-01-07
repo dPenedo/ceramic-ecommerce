@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}{{ pieza.titulo }} - Detalles{% endblock %}
+{% block content %}
+<div class="container mx-auto p-6">
+  <div class="flex flex-col  items-center md:items-start md:space-x-6">
+    {% load humanize %} 
+    <!-- Imagen -->
+    <div class="max-w-lg">
+      <img src="{{ pieza.imagen.url }}" alt="{{ pieza.titulo }}"  class="rounded-lg shadow-md">
+    </div>
+    
+    <!-- Detalles -->
+    <div class="md:w-2/3 mt-4 md:mt-0">
+      <h1 class="text-2xl font-bold mb-4">{{ pieza.titulo }}</h1>
+      
+      <p class="text-gray-600 mb-2">
+        <span class="font-medium">Tipo de pieza:</span> <b>{{ pieza.tipo }}</b>
+      </p>
+      
+      <p class="text-gray-600 mb-2">
+        <span class="font-medium">Hecho por:</span> <b>{{ pieza.complete_name }}</b>
+      </p>
+      
+      <p class="text-gray-600 mb-2">
+        <span class="font-medium">Descripción:</span>
+      </p>
+      <p class="font-medium text-gray-900 font-semibold mb-4">{{ pieza.descripcion }}</p>
+      
+      <p class="text-gray-600 mb-4">
+        <span class="font-medium">Precio:</span> 
+        <span class="text-gray-900 font-bold text-xl">{{ pieza.precio|floatformat:"0"|intcomma }} $</span>
+      </p>
+      
+      <p class="text-gray-600 mb-4">
+        <span class="font-medium">Disponibilidad:</span> 
+        <span class="{% if pieza.cantidad > 0 %}text-green-600{% else %}text-red-600{% endif %}">
+          {% if pieza.cantidad > 0 %}En stock ({{ pieza.cantidad }} disponibles){% else %}Agotado{% endif %}
+        </span>
+      </p>
+      
+      <!-- Botón de compra (si aplicable) -->
+      <div class="container flex flex-col">
+      {% if pieza.cantidad > 0 %}
+        <button class="bg-yellow-700 text-white px-4 py-2 rounded-lg hover:bg-yellow-800 focus:ring focus:ring-yellow-300">
+          Agregar al carrito
+        </button>
+      {% else %}
+        <button class="bg-gray-400 text-white px-4 py-2 rounded-lg cursor-not-allowed" disabled>
+          No disponible
+        </button>
+      {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
