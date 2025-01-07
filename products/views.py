@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from .models import Product
+from .models import Pieza
 
 
 # Create your views here.
 def homepage(request):
-    products = Product.objects.all()
-    return render(request, "homepage.html", {'products': products})
+    piezas = Pieza.objects.all()
+    return render(request, "homepage.html", {"piezas": piezas})

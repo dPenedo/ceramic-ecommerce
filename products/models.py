@@ -1,29 +1,32 @@
 from django.db import models
 
 
-class TypeOfProduct(models.Model):
-    title = models.CharField(max_length=60)
-    description = models.CharField(max_length=200, blank=True, null=True)
+class TipoDePieza(models.Model):
+    nombre = models.CharField(max_length=60)
+    descripcion = models.CharField(max_length=200, blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        if not self.description:
-            self.description = self.title
+        if not self.descripcion:
+            self.descripcion = self.nombre
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.title
+        return self.nombre
 
 
-class Product(models.Model):
+class Pieza(models.Model):
     AUTHORS = {"AGV": "Ariadna Gorostegui Valenti", "VC": "Veronica Cepeda"}
-    title = models.CharField(max_length=100)
-    price = models.FloatField()
-    type = models.ForeignKey(TypeOfProduct, on_delete=models.CASCADE)
-    author = models.CharField(max_length=3, choices=AUTHORS)
-    photo = models.ImageField(upload_to="piezas", blank=True)
+    titulo = models.CharField(max_length=100)
+    descripcion = models.CharField(max_length=300)
+    precio = models.FloatField()
+    tipo = models.ForeignKey(TipoDePieza, on_delete=models.CASCADE)
+    autora = models.CharField(max_length=3, choices=AUTHORS)
+    imagen = models.ImageField(upload_to="piezas", blank=True)
+    fecha_de_publicacion = models.DateTimeField("Fecha de publicación")
+    cantidad = models.IntegerField(default=1)
 
     def __str__(self):
-        return f"{self.title} - {self.type} de {self.author}"
+        return f"{self.titulo} - {self.tipo} de {self.autora}"
 
     def complete_name(self):
-        return self.AUTHORS[self.author]
+        return self.AUTHORS[self.autora]

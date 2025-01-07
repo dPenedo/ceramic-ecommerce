@@ -3,14 +3,16 @@
 
 {% block content %}
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-    {% for product in products %}
-      <div class="bg-white border border-gray-200 rounded-lg shadow-lg p-4">
-<img src="{{ product.photo.url }}" alt="{{ product.title }}" class="w-full h-48 object-cover rounded-t-lg mb-4">
-        <h4 class="text-xl font-bold mb-2">{{ product.title }}</h4>
-        <p class="text-gray-600">Precio: <b>{{ product.price }}</b> $</p>
-        <p class="text-gray-600">Tipo de producto: <b>{{ product.type }}</b></p>
-        <p class="text-gray-600">Hecho por <b>{{ product.complete_name }}</b></p>
-      </div>
+    {% for pieza in piezas %}
+      <a href="#" class=" bg-white border border-gray-200 rounded-lg shadow-lg p-4">
+    <div class="overflow-hiden">
+    <img src="{{ pieza.imagen.url }}" alt="{{ pieza.titulo }}" class=" w-full h-48 rounded-lg object-cover transition duration-300 hover:scale-[1.04]   rounded-t-lg mb-4">
+    </div>
+        <h4 class="text-xl font-bold mb-2">{{ pieza.titulo }}</h4>
+        <p class="text-gray-600">Precio: <b>{{ pieza.precio }}</b> $</p>
+        <p class="text-gray-600">Tipo de pieza: <b>{{ pieza.tipo }}</b></p>
+        <p class="text-gray-600">Hecho por <b>{{ pieza.complete_name }}</b></p>
+      </a>
     {% endfor %}
   </div>
 {% endblock %}
