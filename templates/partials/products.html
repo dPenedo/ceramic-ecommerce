@@ -1,0 +1,98 @@
+<div class="container">
+  <!-- Container -->
+
+  <!-- Filtros -->
+  <div class="mx-2">
+    <p class="text-gray-600 text-lg">Filtrar por:</p>
+    <div class="flex flex-col">
+      <div class="flex flex-row gap-6">
+        <div class="text-gray-600">Autora:</div>
+        <ul>
+          <li>
+            <a
+              href="/"
+              class="font-semibold text-yellow-900 cursor-pointer hover:text-yellow-700"
+              >Ariadna Gorostegui Valenti</a
+            >
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <a
+              href="/"
+              class="font-semibold text-yellow-900 cursor-pointer hover:text-yellow-700"
+              >Veronica Cepeda</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="flex flex-row gap-6">
+        <p class="text-gray-600">Tipo de pieza:</p>
+        <div class="flex flex-col">
+          <button
+            id="tipoDePiezaButton"
+            data-dropdown-toggle="dropdown"
+            class="text-yellow-900 bg-white border-yellow-900 hover:fg-yellow-700 focus:ring-1 focus:outline-none focus:ring-yellow-900 text-base font-semibold rounded-sm px-5 mb-1 text-center inline-flex items-center"
+            type="button"
+          >
+            Tipo de pieza
+            <svg
+              class="w-2.5 h-2.5 ms-3"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 10 6"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m1 1 4 4 4-4"
+              />
+            </svg>
+          </button>
+          <!-- Dropdown menu -->
+          <div
+            id="tipoDePiezaMenu"
+            class="z-10 hidden text-base bg-white rounded-sm shadow-lg w-44"
+          >
+            <ul
+              class="text-sm text-yellow-900"
+              aria-labelledby="dropdownDefaultButton"
+            >
+              {% for tipo in tipos_de_pieza %}
+              <li>
+                <a href="#" class="block px-4 py-1 hover:text-yellow-700"
+                  >{{tipo.nombre}}</a
+                >
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for pieza in piezas %}
+    <a
+      href="{{pieza.id}}"
+      class="bg-white border border-gray-200 rounded-lg shadow-lg p-4"
+    >
+      <div class="block w-full overflow-hidden">
+        <img
+          src="{{ pieza.imagen.url }}"
+          alt="{{ pieza.titulo }}"
+          class="w-full h-48 rounded-lg object-cover transition duration-300 hover:scale-[1.04] rounded-t-lg mb-4"
+        />
+      </div>
+      <h4 class="text-xl text-yellow-900 font-bold mb-2">{{ pieza.titulo }}</h4>
+      <p class="text-gray-600">Tipo de pieza: <b>{{ pieza.tipo }}</b></p>
+      <p class="text-gray-600">Hecho por <b>{{ pieza.complete_name }}</b></p>
+      <p class="text-gray-600">Precio: <b>{{ pieza.precio }}</b> $</p>
+    </a>
+    {% endfor %}
+  </div>
+</div>
