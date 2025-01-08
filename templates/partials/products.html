@@ -7,23 +7,16 @@
     <div class="flex flex-col">
       <div class="flex flex-row gap-6">
         <div class="text-gray-600">Autora:</div>
-        <ul>
+        <ul class="flex flex-row gap-4">
+          {% for key, name in autoras.items %}
           <li>
             <a
-              href="/"
+              href="?autora={{ key }}"
               class="font-semibold text-yellow-900 cursor-pointer hover:text-yellow-700"
-              >Ariadna Gorostegui Valenti</a
+              >{{ name }}</a
             >
           </li>
-        </ul>
-        <ul>
-          <li>
-            <a
-              href="/"
-              class="font-semibold text-yellow-900 cursor-pointer hover:text-yellow-700"
-              >Veronica Cepeda</a
-            >
-          </li>
+          {% endfor %}
         </ul>
       </div>
       <div class="flex flex-row gap-6">
@@ -61,13 +54,17 @@
               class="text-sm text-yellow-900"
               aria-labelledby="dropdownDefaultButton"
             >
-              {% for tipo in tipos_de_pieza %}
+              {% if tipos_de_pieza %} {% for tipo in tipos_de_pieza %}
               <li>
-                <a href="#" class="block px-4 py-1 hover:text-yellow-700"
+                <a
+                  href="?tipo={{ tipo.id }}"
+                  class="block px-4 py-1 hover:text-yellow-700"
                   >{{tipo.nombre}}</a
                 >
               </li>
-              {% endfor %}
+              {% endfor %} {% else %}
+              <p>No se encontraron tipos de pieza</p>
+              {% endif %}
             </ul>
           </div>
         </div>
@@ -76,7 +73,7 @@
   </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-    {% for pieza in piezas %}
+    {% if piezas %} {% for pieza in piezas %}
     <a
       href="{{pieza.id}}"
       class="bg-white border border-gray-200 rounded-lg shadow-lg p-4"
@@ -93,6 +90,8 @@
       <p class="text-gray-600">Hecho por <b>{{ pieza.complete_name }}</b></p>
       <p class="text-gray-600">Precio: <b>{{ pieza.precio }}</b> $</p>
     </a>
-    {% endfor %}
+    {% endfor %} {% else %}
+    <p>No se encontró ninguna pieza pa los filtros seleccionados</p>
+    {% endif %}
   </div>
 </div>
