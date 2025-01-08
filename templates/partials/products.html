@@ -1,6 +1,5 @@
 <div class="container">
-  <!-- Container -->
-
+  {% load humanize %}
   <!-- Filtros -->
   <div class="mx-2">
     <p class="text-gray-600 text-lg">Filtrar por:</p>
@@ -11,8 +10,8 @@
           {% for key, name in autoras.items %}
           <li>
             <a
-              href="?autora={{ key }}"
-              class="font-semibold text-yellow-900 cursor-pointer hover:text-yellow-700"
+              href="?autora={{ key }}&tipo={{ request.GET.tipo }}"
+              class="font-semibold text-yellow-900 cursor-pointer hover:text-yellow-700{% if request.GET.autora == key%} underline {% endif %}"
               >{{ name }}</a
             >
           </li>
@@ -46,6 +45,7 @@
             </svg>
           </button>
           <!-- Dropdown menu -->
+          <!-- TODO: hacer que tambien se marque el dropbox de alguna manera si hay algun filtro seleccionado, algun borde por ejemplo -->
           <div
             id="tipoDePiezaMenu"
             class="z-10 hidden text-base bg-white rounded-sm shadow-lg w-44"
@@ -57,8 +57,8 @@
               {% if tipos_de_pieza %} {% for tipo in tipos_de_pieza %}
               <li>
                 <a
-                  href="?tipo={{ tipo.id }}"
-                  class="block px-4 py-1 hover:text-yellow-700"
+                  href="?tipo={{ tipo.id }}&autora={{ request.GET.autora}}"
+        class="block px-4 py-1 hover:text-yellow-700 {% if request.GET.tipo|default:'' == tipo.id|stringformat:"s" %}underline{% endif %}"
                   >{{tipo.nombre}}</a
                 >
               </li>
@@ -70,8 +70,12 @@
         </div>
       </div>
     </div>
+    {% if request.GET.autora or request.GET.tipo %}
+    <a class="text-gray-900" href="/">Eliminar filtros</a>
+    {% endif %}
   </div>
 
+  <!-- Piezas -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     {% if piezas %} {% for pieza in piezas %}
     <a
@@ -88,7 +92,9 @@
       <h4 class="text-xl text-yellow-900 font-bold mb-2">{{ pieza.titulo }}</h4>
       <p class="text-gray-600">Tipo de pieza: <b>{{ pieza.tipo }}</b></p>
       <p class="text-gray-600">Hecho por <b>{{ pieza.complete_name }}</b></p>
-      <p class="text-gray-600">Precio: <b>{{ pieza.precio }}</b> $</p>
+      <p class="text-gray-600">
+        Precio: <b>{{ pieza.precio|floatformat:"0"|intcomma }}</b> $
+      </p>
     </a>
     {% endfor %} {% else %}
     <p>No se encontró ninguna pieza pa los filtros seleccionados</p>
