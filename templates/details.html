@@ -33,7 +33,7 @@
       
       <p class="text-gray-600 mb-4">
         <span class="font-medium">Disponibilidad:</span> 
-        <span class="{% if pieza.cantidad > 0 %}text-green-600{% else %}text-red-600{% endif %}">
+        <span class="{% if pieza.cantidad > 0 %} text-green-700 {% else %}text-red-800{% endif %}">
           {% if pieza.cantidad > 0 %}En stock ({{ pieza.cantidad }} disponibles){% else %}Agotado{% endif %}
         </span>
       </p>
