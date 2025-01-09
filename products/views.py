@@ -1,4 +1,3 @@
-from django.db.models import query
 from django.views import generic
 from .models import Pieza, TipoDePieza
 
@@ -24,6 +23,10 @@ class HomepageView(generic.ListView):
             queryset = queryset.order_by("-precio")
         if sort_by == "menor_precio":
             queryset = queryset.order_by("precio")
+        if sort_by == "mas_reciente":
+            queryset = queryset.order_by("-fecha_de_publicacion")
+        if sort_by == "mas_antiguo":
+            queryset = queryset.order_by("fecha_de_publicacion")
         return queryset
 
     def get_context_data(self, **kwargs):

@@ -1,0 +1,89 @@
+  <div class="mx-2">
+    <p class="text-gray-600 text-md">Ordenar por:</p>
+    <div class="flex flex-col">
+      <!-- Precio -->
+      <div class="flex flex-row gap-6">
+        <div class="text-gray-600">Precio:</div>
+        <ul class="flex flex-row gap-4">
+          <li>
+            <a
+              href="?sort=mayor_precio&autora={{ request.GET.autora }}&tipo={{ request.GET.tipo }}"
+              class="font-semibold text-yellow-900 cursor-pointer hover:text-yellow-700{% if request.GET.sort == "mayor_precio"%} underline {% endif %}"
+              >De mayor a menor</a
+            >
+          </li>
+          <li>
+            <a
+              href="?sort=menor_precio&autora={{ request.GET.autora }}&tipo={{ request.GET.tipo }}"
+              class="font-semibold text-yellow-900 cursor-pointer hover:text-yellow-700{% if request.GET.sort == "menor_precio"%} underline {% endif %}"
+              >De menor a mayor</a
+            >
+          </li>
+          </ul>
+                        {% if request.GET.sort == "mayor_precio" or request.GET.sort == "menor_precio" %}
+                        <a
+                          href="?tipo={{ request.GET.tipo|default:'' }}&?autora={{ request.GET.autora|default:'' }}"
+                          class="text-black hover:text-red-800 flex items-center -ml-2 mt-1"
+                          aria-label="Eliminar Ordenar por precio"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            class="w-4 h-4"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M6 18L18 6M6 6l12 12"
+                            />
+                          </svg>
+                        </a>
+                        {% endif %}
+      </div>
+      </div>
+      <!-- Fecha -->
+<div class="flex flex-row gap-6">
+        <div class="text-gray-600">Fecha:</div>
+        <ul class="flex flex-row gap-4">
+          <li>
+            <a
+              href="?sort=mas_reciente&autora={{ request.GET.autora }}&tipo={{ request.GET.tipo }}"
+              class="font-semibold text-yellow-900 cursor-pointer hover:text-yellow-700{% if request.GET.sort == "mas_reciente"%} underline {% endif %}"
+              >Más recientes</a
+            >
+          </li>
+          <li>
+            <a
+              href="?sort=mas_antiguo&autora={{ request.GET.autora }}&tipo={{ request.GET.tipo }}"
+              class="font-semibold text-yellow-900 cursor-pointer hover:text-yellow-700{% if request.GET.sort == "mas_antiguo"%} underline {% endif %}"
+              >Más antigüas</a
+            >
+          </li>
+          </ul>
+          {% if request.GET.sort == "mas_reciente" or request.GET.sort == "mas_antiguo"%}
+                        <a
+                          href="?tipo={{ request.GET.tipo|default:'' }}&?autora={{ request.GET.autora|default:'' }}"
+                          class="text-black hover:text-red-800 flex items-center -ml-2 mt-1"
+                          aria-label="Eliminar Ordenar por precio"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            class="w-4 h-4"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M6 18L18 6M6 6l12 12"
+                            />
+                          </svg>
+                        </a>
+                        {% endif %}
+      </div>
+  </div>
