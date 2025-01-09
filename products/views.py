@@ -19,6 +19,11 @@ class HomepageView(generic.ListView):
         if tipo_id:
             queryset = queryset.filter(tipo_id=tipo_id)
 
+        sort_by = self.request.GET.get("sort")
+        if sort_by == "mayor_precio":
+            queryset = queryset.order_by("-precio")
+        if sort_by == "menor_precio":
+            queryset = queryset.order_by("precio")
         return queryset
 
     def get_context_data(self, **kwargs):
