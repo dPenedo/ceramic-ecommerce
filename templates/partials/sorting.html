@@ -1,6 +1,22 @@
-  <div class="mx-2">
-    <p class="text-gray-600 text-md">Ordenar por:</p>
-    <div class="flex flex-col">
+  <div class="mx-2 ">
+    <button id="ordenarPorBoton" class="text-gray-600 text-md flex">Ordenar por
+<svg
+              class="w-2.5 h-2.5 ms-3 my-auto"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 10 6"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m1 1 4 4 4-4"
+              />
+            </svg>
+    </button>
+    <div id="ordenarPorMenu" class="hidden flex flex-col">
       <!-- Precio -->
       <div class="flex flex-row gap-6">
         <div class="text-gray-600">Precio:</div>
@@ -43,7 +59,8 @@
                         </a>
                         {% endif %}
       </div>
-      </div>
+
+
       <!-- Fecha -->
 <div class="flex flex-row gap-6">
         <div class="text-gray-600">Fecha:</div>
@@ -85,5 +102,7 @@
                           </svg>
                         </a>
                         {% endif %}
+      </div>
+
       </div>
   </div>
