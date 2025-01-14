@@ -26,4 +26,5 @@ urlpatterns = [
     path("<int:pk>", product_views.DetailView.as_view(), name="detail"),
     path("admin/", admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
+    path("cuenta/", include("django.contrib.auth.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
