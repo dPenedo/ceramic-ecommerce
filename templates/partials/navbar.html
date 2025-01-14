@@ -68,6 +68,7 @@
     {% else %}
 
      <a class="" href="{% url 'users:login'%}?next={{request.path}}">Iniciar sesión</a>
+     <a class="" href="{% url 'users:register'%}?next={{request.path}}">Registrate</a>
         {% endif %}
 
         </div>
