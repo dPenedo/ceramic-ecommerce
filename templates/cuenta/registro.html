@@ -1,0 +1,8 @@
+{% extends 'base.html' %} {% block title %} Registrarse en Cerámica artesanal {%
+endblock %} {% block content %}
+<h1>Register a New User</h1>
+<form class="" action="{% url 'users:register' %}" method="post">
+  {% csrf_token %} {{ form }}
+  <button class="form-submit">Submit</button>
+</form>
+{% endblock %}

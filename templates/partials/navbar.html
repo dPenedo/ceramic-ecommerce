@@ -67,7 +67,7 @@
           </button>
     {% else %}
 
-     <a class="" href="{% url 'login'%}?next={{request.path}}">Iniciar sesión</a>
+     <a class="" href="{% url 'users:login'%}?next={{request.path}}">Iniciar sesión</a>
         {% endif %}
 
         </div>
@@ -85,22 +85,23 @@
     <!-- AccountMenu -->
           <div id="accountMenu" class="hidden flex-row w-56 divide-y mt-2 sm:mt-0 lg:-mt-8 lg:ml-auto  divide-gray-100 overflow-hidden   overflow-y-auto rounded-lg bg-white antialiased shadow ">
             <ul class="p-2 text-start text-sm font-medium text-yelow-700 ">
-              <li><a href="#" title="" class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 "> Mis pedidos </a></li>
-              <li><a href="#" title="" class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 "> Configuración </a></li>
-              <li><a href="#" title="" class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 "> Favoritos </a></li>
-              <li><a href="#" title="" class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 "> Dirección de envío </a></li>
-              <li><a href="#" title="" class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 "> Facturas </a></li>
+              <li><a href="#" title="Mis pedidos" class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 "> Mis pedidos </a></li>
+              <li><a href="#" title="Configuración" class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 "> Configuración </a></li>
+              <li><a href="#" title="Favoritos" class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 "> Favoritos </a></li>
+              <li><a href="#" title="Dirección de envío" class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 "> Dirección de envío </a></li>
+              <li><a href="#" title="Facturas" class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 "> Facturas </a></li>
             </ul>
 
-          <form action="{% url 'logout' %}" method="post" class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 ">
+          <form action="{% url 'users:logout' %}" method="post" class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 ">
               {% csrf_token %} 
               <button type="submit">Cerrar sesión</button>
           </form>
-          </div>
-    <!-- MobileMenu -->
-    <div id="ecommerce-navbar-menu-1" class="bg-gray-50  border border-gray-200 rounded-lg hidden px-4">
-      <ul class="text-yellow-700  text-sm font-medium  space-y-3">
-        <li>
+
+            </div>
+      <!-- MobileMenu -->
+      <div id="ecommerce-navbar-menu-1" class="bg-gray-50  border border-gray-200 rounded-lg hidden px-4">
+        <ul class="text-yellow-700  text-sm font-medium  space-y-3">
+          <li>
           <a href="/" ><span class="subrayado">Inicio</span></a>
         </li>
         <li>
