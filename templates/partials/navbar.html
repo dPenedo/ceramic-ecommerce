@@ -90,7 +90,7 @@
               <li><a href="#" title="Configuración" class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 "> Configuración </a></li>
               <li><a href="#" title="Favoritos" class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 "> Favoritos </a></li>
               <li><a href="#" title="Dirección de envío" class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 "> Dirección de envío </a></li>
-              <li><a href="#" title="Facturas" class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 "> Facturas </a></li>
+        <li><a href="{% url 'users:edit_profile'%}?next={{request.path}}" title="Modificar mis datos" class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 "> Modificar mis datos </a></li>
             </ul>
 
           <form action="{% url 'users:logout' %}" method="post" class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 ">
