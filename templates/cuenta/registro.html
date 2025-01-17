@@ -1,33 +1,24 @@
 {% extends 'base.html' %}
- {% block title %} Registrarse en Cerámica artesanal {% endblock %} 
-
-
+{% block title %} Registrarse en Cerámica artesanal {% endblock %}
+{% load tailwind_filters static %}
 {% block content %}
-<form method="POST" novalidate>
-	{% csrf_token %}
-	<h2>Registrate en Cerámica artesanal</h2>
+<div class="relative bg-cover bg-center h-screen" style="background-image: url('{% static 'img/fondo2.jpg' %}'); background-attachment: fixed;">
+    <div class="absolute"></div> <!-- Filtro oscuro sobre la imagen para mejorar la visibilidad del formulario -->
 
-	{% for field in form %}
-  <p>
-     {% if field.errors %}
-     <ul class="errorlist">
-       {% for error in field.errors %}
-       <li>{{ error }}</li>
-       {% endfor %}
-     </ul>
-     {% endif %}
-     {% if field.name == "username" %}
-	<div>Nombre de usuario o usuaria:</div> 
-   <div>{{ field }}</div>
-     {% elif field.name == "password2" %}
-	<div>Confirmar contraseña:</div> 
-   <div>{{ field }}</div>
-     {% else %}
-	<div>{{ field.label_tag }}</div> 
-   <div>{{ field }}</div>
-     {% endif %}
-	</p>
-	{% endfor %}
-	<input type="submit" value="Registarse" />
-</form>
-{% endblock content%}
+    <div class="relative z-10 flex items-center justify-center h-full">
+        <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full mx-4">
+            <h2 class="text-center text-2xl font-semibold mb-6">Registrate en Cerámica artesanal</h2>
+
+            <form method="POST" novalidate>
+                {% csrf_token %}
+                <div class="mb-4">{{ form|crispy }}</div>
+
+                <!-- Botón de registrarse -->
+                <button type="submit" class="w-full py-3 mt-4 bg-yellow-800 text-white font-semibold rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-300">
+                    Registrarse
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

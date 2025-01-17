@@ -4,7 +4,16 @@ from django import forms
 
 
 class CreateUserForm(UserCreationForm):
+    username = forms.CharField(label="Nombre de cuenta")
+    first_name = forms.CharField(required=True)
+    last_name = forms.CharField(required=True)
     email = forms.EmailField(required=True)
+    pais = forms.CharField(required=True)
+    provincia = forms.CharField(required=True)
+    ciudad = forms.CharField(required=True)
+    domicilio = forms.CharField(required=True)
+    codigo_postal = forms.CharField(required=True)
+    telefono = forms.CharField()
 
     class Meta:
         model = Usuario

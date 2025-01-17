@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "products",
     "tailwind",
+    "crispy_forms",
+    "crispy_tailwind",
     "theme",
     "django_browser_reload",
     "django.contrib.humanize",
@@ -143,6 +145,12 @@ LOGOUT_REDIRECT_URL = "/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 TAILWIND_APP_NAME = "theme"
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+
+CRISPY_TEMPLATE_PACK = "tailwind"
+
+
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
