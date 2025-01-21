@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block title %}Inicio{% endblock %}
 
+{% load static %}
+<script defer src="{% static 'js/products.js' %}"></script>
 {% block content %}
 {% block products %}
 {% include 'partials/products.html'  %}

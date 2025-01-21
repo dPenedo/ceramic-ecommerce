@@ -27,4 +27,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
     path("cuenta/", include("users.urls")),
+    path("api/stock/<int:product_id>", product_views.stock_view, name="stock_view"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

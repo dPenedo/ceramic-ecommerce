@@ -135,6 +135,11 @@ STATIC_URL = "static/"
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+STATIC_ROOT = (
+    BASE_DIR / "staticfiles"
+)  # Carpeta donde se recopilarán los archivos estáticos para producción
+
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 

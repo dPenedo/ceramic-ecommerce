@@ -1,5 +1,12 @@
 {% extends "base.html" %}
-{% block title %}{{ pieza.titulo }} - Detalles{% endblock %}
+{% load static %}
+<!-- Titulo -->
+{% block title %}   
+  {{ pieza.titulo }} - Detalles   
+{% endblock %}
+<!-- JavaScript -->
+{% block extra_head %}   
+{% endblock %}
 {% block content %}
 <div class="container mx-auto p-6">
   <div class="flex flex-col  items-center md:items-start md:space-x-6">
@@ -8,7 +15,7 @@
     <div class="max-w-lg">
       <img src="{{ pieza.imagen.url }}" alt="{{ pieza.titulo }}"  class="rounded-lg shadow-md">
     </div>
-    
+
     <!-- Detalles -->
     <div class="md:w-2/3 mt-4 md:mt-0">
       <h1 class="text-2xl font-bold mb-4">{{ pieza.titulo }}</h1>
@@ -24,7 +31,7 @@
       <p class="text-gray-600 mb-2">
         <span class="font-medium">Descripción:</span>
       </p>
-      <p class="font-medium text-gray-900 font-semibold mb-4">{{ pieza.descripcion }}</p>
+      <p class="font-medium text-gray-900  mb-4">{{ pieza.descripcion }}</p>
       
       <p class="text-gray-600 mb-4">
         <span class="font-medium">Precio:</span> 
@@ -33,15 +40,19 @@
       
       <p class="text-gray-600 mb-4">
         <span class="font-medium">Disponibilidad:</span> 
-        <span class="{% if pieza.cantidad > 0 %} text-green-700 {% else %}text-red-800{% endif %}">
-          {% if pieza.cantidad > 0 %}En stock ({{ pieza.cantidad }} disponibles){% else %}Agotado{% endif %}
+        <span id="stock-disponible" class="{% if pieza.stock > 0 %} text-green-700 {% else %}text-red-800{% endif %}">
+          {% if pieza.stock > 0 %}  
+          En stock (<span id="stock-cantidad">{{ pieza.stock }}</span> disponibles)  
+          {% else %}  
+          Agotado  
+          {% endif %}
         </span>
       </p>
       
-      <!-- Botón de compra (si aplicable) -->
+      <!-- Botón de compra -->
       <div class="container flex flex-col">
-      {% if pieza.cantidad > 0 %}
-        <button class="bg-yellow-700 text-white px-4 py-2 rounded-lg hover:bg-yellow-800 focus:ring focus:ring-yellow-300">
+      {% if pieza.stock > 0 %}
+        <button id="agregar-al-carrito" class="bg-yellow-700 text-white px-4 py-2 rounded-lg hover:bg-yellow-800 focus:ring focus:ring-yellow-300">
           Agregar al carrito
         </button>
       {% else %}
@@ -53,4 +64,7 @@
     </div>
   </div>
 </div>
+    <script>
+    const selectedProductId = {{ pieza.id }}
+    </script>
 {% endblock %}

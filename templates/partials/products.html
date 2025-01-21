@@ -35,7 +35,7 @@
       <p class="text-gray-600">
         Precio: <b>{{ pieza.precio|floatformat:"0"|intcomma }}</b> $
       </p>
-      {% if pieza.cantidad == 0 %}
+      {% if pieza.stock == 0 %}
       <p class="text-red-800 mx-2">
         Agotado
       </p>

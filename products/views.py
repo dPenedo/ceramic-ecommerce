@@ -1,5 +1,6 @@
 from django.views import generic
 from .models import Pieza, TipoDePieza
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -39,3 +40,13 @@ class HomepageView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Pieza
     template_name = "details.html"
+
+
+def stock_view(request, product_id):
+    if request.method == "GET":
+        try:
+            pieza = Pieza.objects.get(id=product_id)
+            data = {"id": pieza.id, "titulo": pieza.titulo, "stock": pieza.stock}
+            return JsonResponse(data)
+        except Pieza.DoesNotExist:
+            return JsonResponse({"error": "Producto no encontrado"}, status=404)

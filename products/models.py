@@ -23,7 +23,7 @@ class Pieza(models.Model):
     autora = models.CharField(max_length=3, choices=AUTHORS)
     imagen = models.ImageField(upload_to="piezas", blank=True)
     fecha_de_publicacion = models.DateTimeField("Fecha de publicación")
-    cantidad = models.IntegerField(default=1)
+    stock = models.IntegerField(default=1)
 
     def __str__(self):
         return f"{self.titulo} - {self.tipo} de {self.autora}"
