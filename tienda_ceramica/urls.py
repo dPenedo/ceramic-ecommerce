@@ -24,6 +24,7 @@ from products import views as product_views
 urlpatterns = [
     path("", product_views.HomepageView.as_view(), name="homepage"),
     path("<int:pk>", product_views.DetailView.as_view(), name="detail"),
+    path("carrito", product_views.CartView.as_view(), name="cart"),
     path("admin/", admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
     path("cuenta/", include("users.urls")),

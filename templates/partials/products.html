@@ -20,7 +20,7 @@
     {% if piezas %} {% for pieza in piezas %}
     <a
       href="{{pieza.id}}"
-      class="bg-white border border-gray-200 rounded-lg shadow-lg p-4"
+      class="product bg-white border border-gray-200 rounded-lg shadow-lg p-4"
     >
       <div class="block w-full overflow-hidden rounded-lg">
         <img
@@ -35,11 +35,10 @@
       <p class="text-gray-600">
         Precio: <b>{{ pieza.precio|floatformat:"0"|intcomma }}</b> $
       </p>
-      {% if pieza.stock == 0 %}
-      <p class="text-red-800 mx-2">
+      
+      <p id="stock-agotado" class="text-red-800 mx-2 {% if pieza.stock > 0 %} hidden {% endif %}">
         Agotado
       </p>
-      {% endif %}
     </a>
     {% endfor %} 
     {% endif %}

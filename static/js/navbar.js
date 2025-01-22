@@ -1,32 +1,34 @@
 const burgerButton = document.getElementById("burger-button");
 const navbarMenu = document.getElementById("ecommerce-navbar-menu-1");
 
-const accountButton = document.getElementById("accountDropdownButton") || null;
+const accountButton = document.getElementById("accountDropdownButton");
 const accountMenu = document.getElementById("accountMenu");
 
 const amountProducts = document.getElementById("amount-products-in-cart");
 
-// BurgerLogic
-burgerButton.addEventListener("click", function () {
-    navbarMenu.classList.toggle("hidden");
-});
+// Burger Logic
+if (burgerButton && navbarMenu) {
+    burgerButton.addEventListener("click", function () {
+        navbarMenu.classList.toggle("hidden");
+    });
+}
 
+// General click listener to close menus when clicking outside
 document.addEventListener("click", function (event) {
+    // Burger menu close logic
     if (
+        burgerButton &&
+        navbarMenu &&
         !burgerButton.contains(event.target) &&
         !navbarMenu.contains(event.target)
     ) {
         navbarMenu.classList.add("hidden");
     }
-});
 
-// AccountLogic
-accountButton.addEventListener("click", function () {
-    accountMenu.classList.toggle("hidden");
-});
-
-document.addEventListener("click", function (event) {
+    // Account menu close logic
     if (
+        accountButton &&
+        accountMenu &&
         !accountButton.contains(event.target) &&
         !accountMenu.contains(event.target)
     ) {
@@ -34,15 +36,22 @@ document.addEventListener("click", function (event) {
     }
 });
 
-// Display Products in cart
+// Account Logic
+if (accountButton && accountMenu) {
+    accountButton.addEventListener("click", function () {
+        accountMenu.classList.toggle("hidden");
+    });
+}
 
+// Display Products in cart
 const storedShoppingCart =
     JSON.parse(localStorage.getItem("shoppingCart")) || [];
 let totalAmountInCart = 0;
 
-for (let i = 0; i < storedShoppingCart.length; i++) {
-    const product = storedShoppingCart[i];
-    console.log(`cantidad de ${product.title} => ${product.amount}`);
+storedShoppingCart.forEach((product) => {
     totalAmountInCart += product.amount;
+});
+
+if (amountProducts && totalAmountInCart !== 0) {
+    amountProducts.textContent = totalAmountInCart;
 }
-amountProducts.textContent = totalAmountInCart;

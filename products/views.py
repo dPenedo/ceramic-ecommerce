@@ -42,6 +42,17 @@ class DetailView(generic.DetailView):
     template_name = "details.html"
 
 
+class CartView(generic.ListView):
+    template_name = "carrito.html"
+    context_object_name = "piezas"
+
+    def get_queryset(self):
+        shopping_cart_list = self.request.GET.get("shopping-cart")
+        if shopping_cart_list:
+            return Pieza.objects.filter(id__in=shopping_cart_list)
+        return Pieza.objects.none()
+
+
 def stock_view(request, product_id):
     if request.method == "GET":
         try:
