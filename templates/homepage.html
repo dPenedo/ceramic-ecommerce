@@ -1,25 +1,15 @@
+
 {% extends "base.html" %}
 {% block title %}Inicio{% endblock %}
 
 {% load static %}
-<script defer src="{% static 'js/products.js' %}"></script>
+
+{% block extra_head %}
+    <script defer src="{% static 'js/ui/filtering-and-sorting-dropdowns.js' %}"></script>
+{% endblock %}
+
 {% block content %}
-{% block products %}
-{% include 'partials/products.html'  %}
+    {% block products %}
+        {% include 'partials/products.html' %}
+    {% endblock %}
 {% endblock %}
-{% endblock %}
-
-
-
-	<!-- <div class="flex flex-col"> -->
-	<!-- 	<a -->
-	<!-- 		class="md:min-w-32 mb-2 me-2 block w-full min-w-full overflow-hidden md:w-40" -->
-	<!-- 		href="https://escuela-de-columna.vercel.app" -->
-	<!-- 	> -->
-	<!-- 		<Image -->
-	<!-- 			src={img} -->
-	<!--        alt={title} -->
-	<!-- 			class="w-full rounded-lg object-contain transition duration-300 hover:scale-[1.04]" -->
-	<!-- 		/> -->
-	<!-- 	</a> -->
-	<!-- </div> -->

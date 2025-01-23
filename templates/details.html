@@ -9,6 +9,7 @@
     <script>
     const selectedProductId = "{{ pieza.id }}"
     </script>
+    <script type="module" defer src="{% static 'js/cart/add-to-shopping-cart.js' %}"></script>
 {% endblock %}
 {% block content %}
 <div class="container mx-auto p-6">
@@ -55,7 +56,11 @@
       <!-- Botón de compra -->
       <div class="container flex flex-col">
       {% if pieza.stock > 0 %}
-        <button id="agregar-al-carrito" class="bg-yellow-700 text-white px-4 py-2 rounded-lg hover:bg-yellow-800 focus:ring focus:ring-yellow-300">
+          <div id="mensaje-no-mas-stock"
+               class="hidden p-4 mb-4 text-red-800 bg-red-100 border-solid border-red-800 rounded-lg shadow">
+              No queda más stock de {{ pieza.titulo }}
+          </div>
+        <button id="boton-de-agregar-al-carrito" class="bg-yellow-700 border border-red-800 text-white px-4 py-2 rounded-lg hover:bg-yellow-800 focus:ring focus:ring-yellow-300">
           Agregar al carrito
         </button>
       {% else %}

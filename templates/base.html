@@ -17,9 +17,9 @@
 <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
 
     <!-- JavaScript -->
-<script defer src="{% static 'js/navbar.js' %}"></script>
-    {% block extra_head %}{% endblock %}
-<script defer src="{% static 'js/addToShoppingCart.js' %}"></script>
+<script type="module" defer  src="{% static 'js/cart/update-navbar-cart-amount.js' %}"></script>
+    <script defer src="{% static 'js/ui/navbar-dropdowns.js' %}"></script>
+{% block extra_head %}{% endblock %}
 
 </head>
 <body class="bg-white min-h-screen">

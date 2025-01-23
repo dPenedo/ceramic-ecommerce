@@ -42,16 +42,3 @@ if (accountButton && accountMenu) {
         accountMenu.classList.toggle("hidden");
     });
 }
-
-// Display Products in cart
-const storedShoppingCart =
-    JSON.parse(localStorage.getItem("shoppingCart")) || [];
-let totalAmountInCart = 0;
-
-storedShoppingCart.forEach((product) => {
-    totalAmountInCart += product.amount;
-});
-
-if (amountProducts && totalAmountInCart !== 0) {
-    amountProducts.textContent = totalAmountInCart;
-}

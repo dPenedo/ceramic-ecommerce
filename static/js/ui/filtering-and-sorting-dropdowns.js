@@ -8,7 +8,7 @@ const ordenarPorBoton = document.getElementById("ordenarPorBoton")
 const ordenarPorMenu = document.getElementById("ordenarPorMenu")
 
 
-// tipoDePiezaLogic
+// tipoDePieza
 tipoDePiezaButton.addEventListener("click", function () {
     tipoDePiezaMenu.classList.toggle("hidden");
 })
@@ -20,12 +20,13 @@ document.addEventListener("click", function (event) {
 });
 
 
-// FiltroLogic
+// Filtro
 filtrarPorBoton.addEventListener("click", function () {
 
     filtrarPorMenu.classList.toggle("hidden");
 })
-// OrdenarLogic
+
+// Ordenar
 ordenarPorBoton.addEventListener("click", function () {
 
     ordenarPorMenu.classList.toggle("hidden");
