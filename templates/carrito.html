@@ -8,7 +8,6 @@
 {% endblock %} 
 
 <!-- WARN: solo se muestra cuando hay uno solo -->
-<!-- TODO: opcion de borrar -->
 
 {% block content %}
 <div class="container mx-auto p-6">
@@ -26,7 +25,11 @@
         class="w-full h-48 rounded-lg object-cover mb-4"
       />
       <h4 class="text-xl text-yellow-900 font-bold mb-2">{{ pieza.titulo }}</h4>
-      <p class="text-gray-600">Precio: <b>{{ pieza.precio }}</b> $</p>
+      <p class="text-gray-700">Precio: <b>{{ pieza.precio }}</b> $</p>
+      <!-- TODO: Cargar cantidad -->
+      <p  class="text-gray-900">Cantidad: <b ><span data-id="{{pieza.id}}" class="amount-of-each-product"></span></b></p>
+
+      <!-- TODO: opcion de borrar -->
       <button
         class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
         onclick="removeFromCart('{{ pieza.id }}')"
@@ -42,7 +45,7 @@
 
   <div class="mt-4">
     <a
-      href="{% url 'homepage' %}"
+      href="/"
       class="bg-yellow-700 hover:bg-yellow-600 text-white px-4 py-2 rounded"
     >
       Seguir comprando
