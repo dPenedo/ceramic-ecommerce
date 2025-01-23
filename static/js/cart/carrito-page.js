@@ -14,13 +14,16 @@ if (productsIds.length > 0) {
     }
 }
 
-function setAmountInProducts() {
+// WARN: Funciona pero no se actualiza
+export function setAmountOfProducts() {
+    console.log("set amount");
     amountOfEachProductSpans.forEach((span) => {
         const productId = span.getAttribute("data-id");
         const product = shoppingCart.find((item) => item.id == productId);
         if (product) {
+            span.textContent = "";
             span.textContent = product.amount || 1;
         }
     });
 }
-setAmountInProducts();
+setAmountOfProducts();

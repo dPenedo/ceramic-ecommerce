@@ -1,5 +1,3 @@
-console.log("update navbar");
-
 export function updateNavbarCartAmount() {
     const amountProducts = document.getElementById("amount-products-in-cart");
 
