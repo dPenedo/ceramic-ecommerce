@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from cart.models import Carrito
 from products.models import Pieza
 
 # Create your models here.

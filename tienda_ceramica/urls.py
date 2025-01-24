@@ -20,11 +20,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import include, path
 from products import views as product_views
+from cart import views as cart_views
 
 urlpatterns = [
     path("", product_views.HomepageView.as_view(), name="homepage"),
     path("<int:pk>", product_views.DetailView.as_view(), name="detail"),
-    path("carrito", product_views.CartView.as_view(), name="cart"),
+    path("carrito", cart_views.LocalStorageCartView.as_view(), name="cart"),
     path("admin/", admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
     path("cuenta/", include("users.urls")),
