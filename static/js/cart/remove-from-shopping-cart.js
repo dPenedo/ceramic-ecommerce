@@ -1,6 +1,6 @@
 const removeButtons = document.querySelectorAll(".remove-from-cart");
 const storedShoppingCart = JSON.parse(localStorage.getItem("shoppingCart"));
-import { setAmountOfProducts } from "./carrito-page.js";
+import { setAmountOfProducts } from "./set-amount-of-products.js";
 import { updateNavbarCartAmount } from "./update-navbar-cart-amount.js";
 
 removeButtons.forEach((button) => {
@@ -27,6 +27,5 @@ function removeProduct(id) {
     }
     console.log(product ? product.amount : "Producto no encontrado");
     updateNavbarCartAmount();
-    // WARN: no se actualiza el span
     setAmountOfProducts();
 }

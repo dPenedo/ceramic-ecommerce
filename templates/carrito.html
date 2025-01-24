@@ -5,6 +5,7 @@
 {% block extra_head %}
 <script type="module" defer src="{% static 'js/cart/remove-from-shopping-cart.js'  %}"></script>
 <script type="module" defer src="{% static 'js/cart/carrito-page.js'  %}"></script>
+<script type="module" defer src="{% static 'js/cart/set-amount-of-products.js'  %}"></script>
 {% endblock %} 
 
 <!-- WARN: solo se muestra cuando hay uno solo -->
@@ -18,7 +19,7 @@
   {% if piezas %}
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     {% for pieza in piezas %}
-    <div class="bg-white border border-gray-200 rounded-lg shadow-lg p-4">
+    <div id="pieza-en-carrito" class="hidden bg-white border border-gray-200 rounded-lg shadow-lg p-4">
       <img
         src="{{ pieza.imagen.url }}"
         alt="{{ pieza.titulo }}"
@@ -40,7 +41,7 @@
     {% endfor %}
   </div>
   {% else %}
-  <p class="text-gray-700">Tu carrito está vacío.</p>
+  <p id="carro-vacio" class="text-gray-700 "></p>
   {% endif %}
 
   <div class="mt-4">

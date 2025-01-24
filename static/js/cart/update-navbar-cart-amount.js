@@ -9,8 +9,10 @@ export function updateNavbarCartAmount() {
         totalAmountInCart += product.amount;
     });
 
-    if (amountProducts && totalAmountInCart !== 0) {
+    if (amountProducts && totalAmountInCart > 0) {
         amountProducts.textContent = totalAmountInCart;
+    } else {
+        amountProducts.textContent = "";
     }
 }
 
