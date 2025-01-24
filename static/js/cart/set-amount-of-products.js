@@ -2,7 +2,6 @@ export function setAmountOfProducts() {
     const amountOfEachProductSpans = document.querySelectorAll(
         ".amount-of-each-product",
     );
-    const mensajeCarroVacio = document.getElementById("mensaje-carro-vacio");
     console.log(amountOfEachProductSpans);
 
     amountOfEachProductSpans.forEach((span) => {

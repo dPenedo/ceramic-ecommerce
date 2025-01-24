@@ -2,6 +2,7 @@ const removeButtons = document.querySelectorAll(".remove-from-cart");
 const storedShoppingCart = JSON.parse(localStorage.getItem("shoppingCart"));
 import { setAmountOfProducts } from "./set-amount-of-products.js";
 import { updateNavbarCartAmount } from "./update-navbar-cart-amount.js";
+import { noElementsInCart } from "./no-elements-in-cart.js";
 
 removeButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -25,6 +26,10 @@ function removeProduct(id) {
             JSON.stringify(storedShoppingCart),
         );
     }
+    if (storedShoppingCart.length === 0) {
+        noElementsInCart();
+    }
+
     console.log(product ? product.amount : "Producto no encontrado");
     updateNavbarCartAmount();
     setAmountOfProducts();

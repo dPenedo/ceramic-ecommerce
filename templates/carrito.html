@@ -6,6 +6,7 @@
 <script type="module" defer src="{% static 'js/cart/remove-from-shopping-cart.js'  %}"></script>
 <script type="module" defer src="{% static 'js/cart/carrito-page.js'  %}"></script>
 <script type="module" defer src="{% static 'js/cart/set-amount-of-products.js'  %}"></script>
+<script type="module" defer src="{% static 'js/cart/no-elements-in-cart.js'  %}"></script>
 {% endblock %} 
 
 <!-- WARN: solo se muestra cuando hay uno solo -->
@@ -40,9 +41,8 @@
     </div>
     {% endfor %}
   </div>
-  {% else %}
-  <p id="carro-vacio" class="text-gray-700 "></p>
   {% endif %}
+  <p id="mensaje-carro-vacio" class="text-gray-700 "></p>
 
   <div class="mt-4">
     <a
