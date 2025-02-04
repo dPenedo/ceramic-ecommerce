@@ -1,18 +1,22 @@
 export function updateNavbarCartAmount() {
-    const amountProducts = document.getElementById("amount-products-in-cart");
+    if (!isAuthenticated) {
+        const amountProducts = document.getElementById(
+            "amount-products-in-cart",
+        );
 
-    const storedShoppingCart =
-        JSON.parse(localStorage.getItem("shoppingCart")) || [];
-    let totalAmountInCart = 0;
+        const storedShoppingCart =
+            JSON.parse(localStorage.getItem("shoppingCart")) || [];
+        let totalAmountInCart = 0;
 
-    storedShoppingCart.forEach((product) => {
-        totalAmountInCart += product.amount;
-    });
+        storedShoppingCart.forEach((product) => {
+            totalAmountInCart += product.amount;
+        });
 
-    if (amountProducts && totalAmountInCart > 0) {
-        amountProducts.textContent = totalAmountInCart;
-    } else {
-        amountProducts.textContent = "";
+        if (amountProducts && totalAmountInCart > 0) {
+            amountProducts.textContent = totalAmountInCart;
+        } else {
+            amountProducts.textContent = "";
+        }
     }
 }
 

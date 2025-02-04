@@ -19,4 +19,4 @@ class CarritoItem(models.Model):
     fecha_agregado = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.usuario.username} - {self.pieza.titulo} (x{self.cantidad})"
+        return f"{self.carrito.usuario} - {self.pieza.titulo} (x{self.cantidad})"

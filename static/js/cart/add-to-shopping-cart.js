@@ -10,7 +10,7 @@ let shoppingCart = JSON.parse(localStorage.getItem("shoppingCart")) || [];
 const productId =
     typeof selectedProductId !== "undefined" ? selectedProductId : null;
 
-if (botonDeAgregarAlCarrito) {
+if (botonDeAgregarAlCarrito && !isAuthenticated) {
     botonDeAgregarAlCarrito.addEventListener("click", async function () {
         mensajeNoMasStock.classList.add("hidden");
         try {
@@ -49,4 +49,3 @@ if (botonDeAgregarAlCarrito) {
 }
 // Actualizar la cantidad del carrito al cargar la página
 updateNavbarCartAmount();
-

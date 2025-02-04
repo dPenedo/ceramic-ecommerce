@@ -7,6 +7,8 @@ from products.models import Pieza
 
 
 class Usuario(AbstractUser):
+    nombre = models.CharField(max_length=50, blank=False, null=True)
+    apellido = models.CharField(max_length=50, blank=False, null=True)
     pais = models.CharField(max_length=50, blank=False, null=True)
     provincia = models.CharField(max_length=50, blank=False, null=True)
     ciudad = models.CharField(max_length=50, blank=False, null=True)

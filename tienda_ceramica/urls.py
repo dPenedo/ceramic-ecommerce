@@ -25,7 +25,18 @@ from cart import views as cart_views
 urlpatterns = [
     path("", product_views.HomepageView.as_view(), name="homepage"),
     path("<int:pk>", product_views.DetailView.as_view(), name="detail"),
-    path("carrito", cart_views.LocalStorageCartView.as_view(), name="cart"),
+    path("carrito", cart_views.LocalStorageCartView.as_view(), name="carritolocal"),
+    path("add/<int:pieza_id>/", cart_views.AddToCart.as_view(), name="AddToCart"),
+    path(
+        "remove/<int:item_id>/",
+        cart_views.RemoveFromCart.as_view(),
+        name="RemoveFromCart",
+    ),
+    path(
+        "micarrito",
+        cart_views.DatabaseCartView.as_view(),
+        name="micarrito",
+    ),
     path("admin/", admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
     path("cuenta/", include("users.urls")),

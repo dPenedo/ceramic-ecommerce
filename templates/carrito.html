@@ -3,13 +3,13 @@
 {% block title %} Tu carrito de la compra {% endblock %}
 <!-- JavaScript -->
 {% block extra_head %}
-<script type="module" defer src="{% static 'js/cart/remove-from-shopping-cart.js'  %}"></script>
 <script type="module" defer src="{% static 'js/cart/carrito-page.js'  %}"></script>
 <script type="module" defer src="{% static 'js/cart/set-amount-of-products.js'  %}"></script>
 <script type="module" defer src="{% static 'js/cart/no-elements-in-cart.js'  %}"></script>
+<script type="module" defer  src="{% static 'js/cart/update-navbar-cart-amount.js' %}"></script>
+<script type="module" defer src="{% static 'js/cart/remove-from-shopping-cart.js'  %}"></script>
 {% endblock %} 
 
-<!-- WARN: solo se muestra cuando hay uno solo -->
 
 {% block content %}
 <div class="container mx-auto p-6">
@@ -17,9 +17,39 @@
     Este es tu carrito de la compra{% if user.is_authenticated %}, {{ user.get_username }}{% endif %}
   </h3>
 
+  {% if user.is_authenticated %}
   {% if piezas %}
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     {% for pieza in piezas %}
+    <div id="pieza-en-carrito" class="bg-white border border-gray-200 rounded-lg shadow-lg p-4">
+      <img
+        src="{{ pieza.pieza.imagen.url }}"
+        alt="{{ pieza.pieza.titulo }}"
+        class="w-full h-48 rounded-lg object-cover mb-4"
+      />
+      <h4>{{  pieza.pieza.titulo }} lal</h4>
+      <h4 class="text-xl text-yellow-900 font-bold mb-2">{{ pieza.pieza.titulo }}</h4>
+      <p class="text-gray-700">Precio: <b>{{ pieza.pieza.precio }}</b> $</p>
+      <!-- TODO: Cargar cantidad -->
+      <p  class="text-gray-900">Cantidad: <b ><span data-id="{{pieza.pieza.id}}" class="amount-of-each-product"></span></b></p>
+
+      <button
+        class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded remove-from-cart"
+        data-id="{{pieza.pieza.id}}"
+      >
+        Quitar del carrito
+      </button>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p id="mensaje-carro-vacio" class="text-gray-700 "></p>
+  {% endif %}
+  {% else %}
+
+  {% if piezaslocal %}
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for pieza in piezaslocal %}
     <div id="pieza-en-carrito" class="hidden bg-white border border-gray-200 rounded-lg shadow-lg p-4">
       <img
         src="{{ pieza.imagen.url }}"
@@ -31,7 +61,6 @@
       <!-- TODO: Cargar cantidad -->
       <p  class="text-gray-900">Cantidad: <b ><span data-id="{{pieza.id}}" class="amount-of-each-product"></span></b></p>
 
-      <!-- TODO: opcion de borrar -->
       <button
         class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded remove-from-cart"
         data-id="{{pieza.id}}"
@@ -41,9 +70,13 @@
     </div>
     {% endfor %}
   </div>
-  {% endif %}
-  <p id="mensaje-carro-vacio" class="text-gray-700 "></p>
 
+    <!-- JavaScript -->
+
+  {% else %}
+  <p id="mensaje-carro-vacio" class="text-gray-700 "></p>
+  {% endif %}
+  {% endif %}
   <div class="mt-4">
     <a
       href="/"

@@ -30,5 +30,8 @@
 {% block content %}{% endblock %}
 
       </div>
+<script>
+    const isAuthenticated = {{ user.is_authenticated|yesno:"true,false" }};
+</script>
 </body>
 </html>
