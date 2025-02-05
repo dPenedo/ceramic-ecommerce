@@ -10,7 +10,7 @@ export function setAmountOfProducts() {
                 JSON.parse(localStorage.getItem("shoppingCart")) || [];
             const product = shoppingCart.find((item) => item.id == productId);
             const parentDiv = span.closest("#pieza-en-carrito");
-            if (isAuthenticated) {
+            if (!isAuthenticated) {
                 if (product && product.amount > 0) {
                     span.textContent = "";
                     span.textContent = product.amount || 1;

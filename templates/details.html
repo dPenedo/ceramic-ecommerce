@@ -50,7 +50,16 @@
             
           En stock ({{ pieza.stock }} disponibles)  
           {% else  %}
+
+
           En stock (<span id="stock-cantidad">{{ pieza.stock }}</span> disponibles)  
+
+          <div id="mensaje-no-mas-stock"
+               class="hidden p-4 mb-4 text-red-800 bg-red-100 border-solid border-red-800 rounded-lg shadow">
+              No queda más stock de {{ pieza.titulo }}
+          </div>
+
+
           {% endif %}
           
           {% else %}  

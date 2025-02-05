@@ -1,5 +1,3 @@
-console.log("update navbar");
-
 export function updateNavbarCartAmount() {
     const amountProducts = document.getElementById("amount-products-in-cart");
 
@@ -16,6 +14,9 @@ export function updateNavbarCartAmount() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    updateNavbarCartAmount();
-});
+if (!isAuthenticated) {
+    document.addEventListener("DOMContentLoaded", () => {
+        console.log("update navbar");
+        updateNavbarCartAmount();
+    });
+}

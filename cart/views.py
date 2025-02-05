@@ -1,5 +1,3 @@
-from django.core.checks import messages
-from django.http import HttpResponse, request
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -17,18 +15,13 @@ class AddToCart(LoginRequiredMixin, View):
                 carrito=carrito, pieza=pieza
             )
 
-            # WARN: No debería agotar el stock, porque no compra!!
             if not created and cartItem.cantidad < pieza.stock:
                 cartItem.cantidad += 1
                 cartItem.save()
-                pieza.stock -= 1
-                pieza.save()
                 print(f"Sumado {pieza}")
             elif created:
                 cartItem.cantidad = 1
                 cartItem.save()
-                pieza.stock -= 1
-                pieza.save()
                 print(f"Sumado {pieza}")
             else:
                 # Si no hay suficiente stock, muestra un mensaje de error
@@ -42,6 +35,22 @@ class AddToCart(LoginRequiredMixin, View):
             # Si no hay stock, muestra un mensaje de error
             print("no hay stock")
             return redirect(request.META.get("HTTP_REFERER"))
+
+
+# WARN: Pasarlo a context processor
+def numero_de_items_del_carrito(request):
+    if request.user.is_authenticated:
+        carrito = Carrito.objects.filter(usuario=request.user).first()
+        count = (
+            sum(item.cantidad for item in CarritoItem.objects.filter(carrito=carrito))
+            if carrito
+            else 0
+        )
+    else:
+        count = 0
+    print("carrito " + carrito)
+    print("cuenta " + count)
+    return render(request, "navbar.html", {"cuenta_carrito": count})
 
 
 class RemoveFromCart(LoginRequiredMixin, View):

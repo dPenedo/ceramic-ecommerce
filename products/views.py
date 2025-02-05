@@ -42,6 +42,7 @@ class DetailView(generic.DetailView):
     template_name = "details.html"
 
 
+# TODO: Pasarlo a context processor?
 def stock_view(request, product_id):
     if request.method == "GET":
         try:

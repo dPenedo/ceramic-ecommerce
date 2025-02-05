@@ -14,11 +14,15 @@
 {% block content %}
 <div class="container mx-auto p-6">
   <h3 class="text-2xl font-semibold mb-4">
-    Este es tu carrito de la compra{% if user.is_authenticated %}, {{ user.get_username }}{% endif %}
+    Este es tu carrito de la compra{% if user.is_authenticated %}, {{ user.get_username.capitalize }}{% endif %}
   </h3>
 
   {% if user.is_authenticated %}
   {% if piezas %}
+      <script>
+  // WARN: no se muestran
+      console.log("iii{{pieza}}")
+      </script>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     {% for pieza in piezas %}
     <div id="pieza-en-carrito" class="bg-white border border-gray-200 rounded-lg shadow-lg p-4">
