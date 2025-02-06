@@ -1,5 +1,5 @@
 from django.db.models import Sum
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
@@ -7,6 +7,8 @@ from .models import Carrito, CarritoItem, Pieza
 
 
 class AddToCart(LoginRequiredMixin, View):
+    """Añadir una pieza al carrito de la base de datos"""
+
     def post(self, request, pieza_id):
         pieza = get_object_or_404(Pieza, id=pieza_id)
 
@@ -39,6 +41,8 @@ class AddToCart(LoginRequiredMixin, View):
 
 
 class RemoveFromCart(LoginRequiredMixin, View):
+    """Eliminar una pieza al carrito de la base de datos"""
+
     def post(self, request, pieza_id):
         carrito_item = get_object_or_404(
             CarritoItem,
@@ -49,24 +53,18 @@ class RemoveFromCart(LoginRequiredMixin, View):
         return redirect("/")
 
 
-def numero_de_items_del_carrito(request):
-    print("lala")
+def obtener_cantidad_en_carrito(request, pieza_id):
+    """Obtener la cantidad de una pieza en el carrito de la base de datos, para no exceder el stock"""
     if request.user.is_authenticated:
         carrito = Carrito.objects.filter(usuario=request.user).first()
         if carrito:
-            count = (
-                CarritoItem.objects.filter(carrito=carrito).aggregate(
-                    total=Sum("cantidad")
-                )["total"]
+            return (
+                CarritoItem.objects.filter(
+                    carrito=carrito, pieza_id=pieza_id
+                ).aggregate(total=Sum("cantidad"))["total"]
                 or 0
             )
-        else:
-            count = 0
-    else:
-        count = 0
-
-    print(f"La cuenta da -> {count}")
-    return render(request, "navbar.html", {"cuenta_carrito": count})
+    return 0
 
 
 class DatabaseCartView(LoginRequiredMixin, generic.ListView):

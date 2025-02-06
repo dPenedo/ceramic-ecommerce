@@ -1,6 +1,4 @@
 from django.db.models import Sum
-from django.shortcuts import render
-
 from cart.models import Carrito, CarritoItem
 
 
@@ -19,5 +17,4 @@ def numero_de_items_del_carrito(request):
     else:
         count = 0
 
-    print(f"La cuenta da -> {count}")
     return {"cuenta_carrito": count}

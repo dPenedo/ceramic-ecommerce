@@ -49,9 +49,8 @@
           {% if user.is_authenticated %}
             
           En stock ({{ pieza.stock }} disponibles)  
-          {% else  %}
 
-
+                    {% else  %}
           En stock (<span id="stock-cantidad">{{ pieza.stock }}</span> disponibles)  
 
           <div id="mensaje-no-mas-stock"
@@ -72,19 +71,31 @@
       <div class="container flex flex-col">
 {% if pieza.stock > 0 %}
     {% if user.is_authenticated %}
+                 {% if pieza.stock > cantidad_en_carrito %}
         <form action="{% url 'AddToCart' pieza.id %}" method="post">
             {% csrf_token %}
             <button type="submit" class="bg-yellow-700 border border-red-800 text-white px-4 py-2 rounded-lg hover:bg-yellow-800 focus:ring focus:ring-yellow-300">
                 Agregar al carrito
             </button>
         </form>
+                {% else %}
+        <form action="{% url 'AddToCart' pieza.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="bg-gray-500 border border-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-500 focus:ring focus:ring-gray-300" disabled>
+                        No queda más stock de {{pieza.titulo}} 
+
+            </button>
+        </form>
+
+
+                {% endif %}
     {% else %}
         <button id="boton-de-agregar-al-carrito" class="bg-yellow-700 border border-red-800 text-white px-4 py-2 rounded-lg hover:bg-yellow-800 focus:ring focus:ring-yellow-300">
             Agregar al carrito
         </button>
     {% endif %}
 {% else %}
-    <button class="bg-gray-400 text-white px-4 py-2 rounded-lg cursor-not-allowed" disabled>
+    <button class="bg-gray-500 text-white px-4 py-2 rounded-lg cursor-not-allowed" disabled>
         No disponible
     </button>
 {% endif %}

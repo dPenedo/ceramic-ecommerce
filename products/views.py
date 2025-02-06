@@ -1,4 +1,6 @@
 from django.views import generic
+
+from cart.views import obtener_cantidad_en_carrito
 from .models import Pieza, TipoDePieza
 from django.http import JsonResponse
 
@@ -40,6 +42,15 @@ class HomepageView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Pieza
     template_name = "details.html"
+    context_object_name = "pieza"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pieza_id = self.object.id  # Obtén el ID de la pieza actual
+        context["cantidad_en_carrito"] = obtener_cantidad_en_carrito(
+            self.request, pieza_id
+        )
+        return context
 
 
 # TODO: Pasarlo a context processor?
