@@ -41,16 +41,22 @@ class AddToCart(LoginRequiredMixin, View):
 
 
 class RemoveFromCart(LoginRequiredMixin, View):
-    """Eliminar una pieza al carrito de la base de datos"""
+    """Eliminar una pieza del carrito de la base de datos"""
 
     def post(self, request, pieza_id):
+        carrito = get_object_or_404(Carrito, usuario=request.user)
         carrito_item = get_object_or_404(
-            CarritoItem,
-            pieza_id=pieza_id,
-            carrito__usuario=request.user,  # Cambiado aquí?
+            CarritoItem, carrito=carrito, pieza__id=pieza_id
         )
-        carrito_item.delete()
-        return redirect("/")
+        print(f"carrito item -> {carrito_item}")
+        print(f"carrito item cantidad -> {carrito_item.cantidad}")
+        if carrito_item.cantidad > 1:
+            carrito_item.cantidad -= 1
+            carrito_item.save()
+
+        else:
+            carrito_item.delete()
+        return redirect(request.META.get("HTTP_REFERER"))
 
 
 def obtener_cantidad_en_carrito(request, pieza_id):

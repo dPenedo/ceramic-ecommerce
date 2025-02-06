@@ -24,7 +24,7 @@
       </script>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     {% for pieza in piezas %}
-    <div id="pieza-en-carrito" class="bg-white border border-gray-200 rounded-lg shadow-lg p-4">
+    <div  class="bg-white border border-gray-200 rounded-lg shadow-lg p-4">
       <img
         src="{{ pieza.pieza.imagen.url }}"
         alt="{{ pieza.pieza.titulo }}"
@@ -36,17 +36,17 @@
       <!-- TODO: Cargar cantidad -->
             <p  class="text-gray-900">Cantidad: <b>{{ pieza.cantidad }}</b></p>
 
-      <button
-        class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded remove-from-cart"
-        data-id="{{pieza.pieza.id}}"
-      >
-        Quitar del carrito
-      </button>
+            <form action="{% url 'RemoveFromCart' pieza.pieza.id %}" method="post">
+                    {% csrf_token %}
+                <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">
+                    Quitar del carrito
+                </button>
+            </form>
     </div>
     {% endfor %}
   </div>
   {% else %}
-  <p id="mensaje-carro-vacio" class="text-gray-700 "></p>
+  <p class="text-gray-700 ">No hay elementos en tu carrito.</p>
   {% endif %}
   {% else %}
 

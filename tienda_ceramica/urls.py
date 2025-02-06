@@ -28,7 +28,7 @@ urlpatterns = [
     path("carrito", cart_views.LocalStorageCartView.as_view(), name="carritolocal"),
     path("add/<int:pieza_id>/", cart_views.AddToCart.as_view(), name="AddToCart"),
     path(
-        "remove/<int:item_id>/",
+        "remove/<int:pieza_id>/",
         cart_views.RemoveFromCart.as_view(),
         name="RemoveFromCart",
     ),
