@@ -1,3 +1,4 @@
+from django.db.models import Sum
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -37,22 +38,6 @@ class AddToCart(LoginRequiredMixin, View):
             return redirect(request.META.get("HTTP_REFERER"))
 
 
-# WARN: Pasarlo a context processor
-def numero_de_items_del_carrito(request):
-    if request.user.is_authenticated:
-        carrito = Carrito.objects.filter(usuario=request.user).first()
-        count = (
-            sum(item.cantidad for item in CarritoItem.objects.filter(carrito=carrito))
-            if carrito
-            else 0
-        )
-    else:
-        count = 0
-    print("carrito " + carrito)
-    print("cuenta " + count)
-    return render(request, "navbar.html", {"cuenta_carrito": count})
-
-
 class RemoveFromCart(LoginRequiredMixin, View):
     def post(self, request, pieza_id):
         carrito_item = get_object_or_404(
@@ -64,6 +49,26 @@ class RemoveFromCart(LoginRequiredMixin, View):
         return redirect("/")
 
 
+def numero_de_items_del_carrito(request):
+    print("lala")
+    if request.user.is_authenticated:
+        carrito = Carrito.objects.filter(usuario=request.user).first()
+        if carrito:
+            count = (
+                CarritoItem.objects.filter(carrito=carrito).aggregate(
+                    total=Sum("cantidad")
+                )["total"]
+                or 0
+            )
+        else:
+            count = 0
+    else:
+        count = 0
+
+    print(f"La cuenta da -> {count}")
+    return render(request, "navbar.html", {"cuenta_carrito": count})
+
+
 class DatabaseCartView(LoginRequiredMixin, generic.ListView):
     template_name = "carrito.html"
     context_object_name = "piezas"
@@ -71,7 +76,6 @@ class DatabaseCartView(LoginRequiredMixin, generic.ListView):
     def get_queryset(self):
         carrito = Carrito.objects.filter(usuario=self.request.user).first()
         if carrito:
-            print("databasss")
             print(CarritoItem.objects.filter(carrito=carrito))
             return CarritoItem.objects.filter(carrito=carrito)
         return Carrito.objects.none()

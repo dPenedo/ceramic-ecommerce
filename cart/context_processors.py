@@ -1,0 +1,23 @@
+from django.db.models import Sum
+from django.shortcuts import render
+
+from cart.models import Carrito, CarritoItem
+
+
+def numero_de_items_del_carrito(request):
+    if request.user.is_authenticated:
+        carrito = Carrito.objects.filter(usuario=request.user).first()
+        if carrito:
+            count = (
+                CarritoItem.objects.filter(carrito=carrito).aggregate(
+                    total=Sum("cantidad")
+                )["total"]
+                or 0
+            )
+        else:
+            count = 0
+    else:
+        count = 0
+
+    print(f"La cuenta da -> {count}")
+    return {"cuenta_carrito": count}
