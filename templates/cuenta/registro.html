@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
-{% block title %} Registrarse en Cerámica artesanal {% endblock %}
 {% load tailwind_filters static %}
+{% block title %} Registrarse en Cerámica artesanal {% endblock %}
+{% block extra_head %}
+<script type="module" defer src="{% static 'js/cart/registration-cart-to-database.js'  %}"></script>
+{% endblock %} 
 {% block content %}
             <h2 class="text-center text-2xl font-semibold mb-6">Registrate en Cerámica artesanal</h2>
 <!-- WARN: La imagen es muy pesada -->
@@ -11,8 +14,9 @@
             <form class="focus:outline-none focus:ring-2 focus:ring-yellow-300" method="POST" novalidate>
                 {% csrf_token %}
                 <div class="mb-4">{{ form|crispy }}</div>
-        <input type="checkbox" id="conservar-carrito">
+        <input type="checkbox" id="conservar-carrito" name="conservar_carrito">
         <label for="conservar-carrito">¿Quiere conservar el carrito de la compra actual?</label>
+    <input type="hidden" id="carrito-data" name="carrito_data">
 
                 <!-- Botón de registrarse -->
                 <button type="submit" class="w-full py-3 mt-4 bg-yellow-800 text-white font-semibold rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-300">

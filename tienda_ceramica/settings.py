@@ -85,6 +85,13 @@ WSGI_APPLICATION = "tienda_ceramica.wsgi.application"
 AUTH_USER_MODEL = "users.Usuario"
 
 
+# Añadido por problema de enviar json desde el registro
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",
+]
+CORS_ALLOW_CREDENTIALS = True
+
+
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 

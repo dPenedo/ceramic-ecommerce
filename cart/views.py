@@ -27,7 +27,6 @@ class AddToCart(LoginRequiredMixin, View):
                 cartItem.save()
                 print(f"Sumado {pieza}")
             else:
-                # Si no hay suficiente stock, muestra un mensaje de error
                 print("no queda stock")
                 return redirect(request.META.get("HTTP_REFERER"))
 
@@ -35,7 +34,6 @@ class AddToCart(LoginRequiredMixin, View):
                 request.META.get("HTTP_REFERER")
             )  # Redirige a la página anterior
         else:
-            # Si no hay stock, muestra un mensaje de error
             print("no hay stock")
             return redirect(request.META.get("HTTP_REFERER"))
 
@@ -60,7 +58,8 @@ class RemoveFromCart(LoginRequiredMixin, View):
 
 
 def obtener_cantidad_en_carrito(request, pieza_id):
-    """Obtener la cantidad de una pieza en el carrito de la base de datos, para no exceder el stock"""
+    """Obtener la cantidad de una pieza en el carrito de la base de datos, para no exceder el stock. Usado en el Details"""
+
     if request.user.is_authenticated:
         carrito = Carrito.objects.filter(usuario=request.user).first()
         if carrito:
@@ -74,6 +73,8 @@ def obtener_cantidad_en_carrito(request, pieza_id):
 
 
 class DatabaseCartView(LoginRequiredMixin, generic.ListView):
+    """ "Obtiene la lista de elementos en el carrito de la base de datos"""
+
     template_name = "carrito.html"
     context_object_name = "piezas"
 
@@ -86,6 +87,8 @@ class DatabaseCartView(LoginRequiredMixin, generic.ListView):
 
 
 class LocalStorageCartView(generic.ListView):
+    """Obtiene la lista de elementos en el carrito de la url que genera el carrito-page.js"""
+
     template_name = "carrito.html"
     context_object_name = "piezaslocal"
 

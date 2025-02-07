@@ -3,6 +3,7 @@ from cart.models import Carrito, CarritoItem
 
 
 def numero_de_items_del_carrito(request):
+    "Obtener la cuenta de elementos totales en el carrito. Usado en la navbar"
     if request.user.is_authenticated:
         carrito = Carrito.objects.filter(usuario=request.user).first()
         if carrito:
