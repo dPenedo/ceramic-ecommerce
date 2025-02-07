@@ -36,6 +36,10 @@ class HomepageView(generic.ListView):
         context = super().get_context_data(**kwargs)
         context["tipos_de_pieza"] = TipoDePieza.objects.all()
         context["autoras"] = Pieza.AUTHORS
+        if self.request.user.is_authenticated:
+            context["nombre_completo"] = f"{self.request.user.nombre} {self.request.user.apellido}"
+        else:
+            context["nombre_completo"] = "Sin nombre"
         return context
 
 

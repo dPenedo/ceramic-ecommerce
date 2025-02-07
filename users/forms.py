@@ -1,13 +1,12 @@
-from django.contrib.auth.forms import User, UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import Usuario
 from django import forms
 
 
 class CreateUserForm(UserCreationForm):
-    username = forms.CharField(label="Nombre de cuenta")
-    first_name = forms.CharField(required=True)
-    last_name = forms.CharField(required=True)
-    email = forms.EmailField(required=True)
+    nombre = forms.CharField(required=True, label="Nombre")
+    apellido = forms.CharField(required=True, label="Apellido")
+    email = forms.EmailField(required=True, label="Correo electrónico")
     pais = forms.CharField(required=True)
     provincia = forms.CharField(required=True)
     ciudad = forms.CharField(required=True)
@@ -18,10 +17,9 @@ class CreateUserForm(UserCreationForm):
     class Meta:
         model = Usuario
         fields = (
-            "username",
-            "first_name",
-            "last_name",
             "email",
+            "nombre",
+            "apellido",
             "pais",
             "provincia",
             "ciudad",
@@ -37,8 +35,8 @@ class EditProfileForm(UserChangeForm):
     class Meta:
         model = Usuario
         fields = (
-            "first_name",
-            "last_name",
+            "nombre",
+            "apellido",
             "email",
             "pais",
             "provincia",
@@ -47,4 +45,4 @@ class EditProfileForm(UserChangeForm):
             "codigo_postal",
             "telefono",
         )
-        # exclude = ()
+        exclude = ("password",)

@@ -9,7 +9,7 @@ class Carrito(models.Model):
     fecha_creacion = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Carrito de {self.usuario.username}"
+        return f"Carrito de {self.usuario.nombre}"
 
 
 class CarritoItem(models.Model):

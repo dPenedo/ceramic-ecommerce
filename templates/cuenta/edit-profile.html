@@ -1,10 +1,11 @@
 {% extends 'base.html' %} 
 {% block title %} Editar información de perfil 
+{% load tailwind_filters static %}
 {% endblock %} 
 {% block content %}
 
 <form method="post" action="{% url 'users:edit_profile' %}">
-  {% csrf_token %} {{ form.as_p}}
+  {% csrf_token %} {{ form|crispy}}
   <button type="submit">Enviar</button>
 </form>
 {% endblock %}
