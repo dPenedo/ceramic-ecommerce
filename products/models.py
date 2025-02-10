@@ -17,11 +17,11 @@ class TipoDePieza(models.Model):
 class Pieza(models.Model):
     AUTHORS = {"AGV": "Ariadna Gorostegui Valenti", "VC": "Veronica Cepeda"}
     titulo = models.CharField(max_length=100)
-    descripcion = models.CharField(max_length=300)
+    descripcion = models.CharField(max_length=1300)
     precio = models.FloatField()
     tipo = models.ForeignKey(TipoDePieza, on_delete=models.CASCADE)
     autora = models.CharField(max_length=3, choices=AUTHORS)
-    imagen = models.ImageField(upload_to="piezas", blank=True)
+    imagen = models.ImageField(upload_to="piezas")
     fecha_de_publicacion = models.DateTimeField("Fecha de publicación")
     stock = models.IntegerField(default=1)
 
