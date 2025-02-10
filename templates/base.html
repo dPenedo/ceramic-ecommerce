@@ -30,6 +30,9 @@
 {% block content %}{% endblock %}
 
       </div>
+    {% block footer %}
+        {% include 'partials/footer.html' %}
+    {% endblock %}
 <script>
     const isAuthenticated = {{ user.is_authenticated|yesno:"true,false" }};
 </script>
